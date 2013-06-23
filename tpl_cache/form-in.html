@@ -1,0 +1,76 @@
+<div id="content-header">
+  <h1>商品入库</h1>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid main_content">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>入库清单</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <!--商品名-->
+              <label class="control-label span1 margin-none">商品名</label>
+              <div class="controls span2">
+                <input type="text" class="span10 prodution_name">
+              </div>
+              <!--货号-->
+              <label class="control-label span1 margin-none">货号</label>
+              <div class="controls span2">
+                <input type="text" class="span10 in_code">
+              </div>
+              <!--颜色-->
+              <label class="control-label span1 margin-none">颜色</label>
+              <div class="controls span2">
+                <input type="text" class="span10 in_color">
+              </div>
+              <!--尺寸-->
+              <label class="control-label span1 margin-none">尺寸</label>
+              <div class="controls span2">
+                <input type="text" class="span10 in_price in_size">
+              </div>
+            </div>
+            <div class="control-group">
+              <!--单价-->
+              <label class="control-label span1 margin-none">成本价</label>
+              <div class="controls span2">
+                <input type="text" class="span4 unit_price in_price" value='0'>
+              </div>
+              <!--数量-->
+              <label class="control-label span1 margin-none">数量</label>
+              <div class="controls span2" style="min-width:158px;white-space:nowrap">
+                <button class="num-control num-add">+</button>
+                <input type="text" class="input_num span4 in_price in_num" value='0'>
+                <button class="num-control num-cut">-</button>
+              </div>
+              <!--总价-->
+              <label id='total_price_' class="control-label span1 margin-none">总价</label>
+              <div class="controls span2">
+                <span class="total_price f14">￥<strong class="red">32312</strong></span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary copy_this">复制</button>
+              <button type="submit" class="btn btn-danger delete_this">删除</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+   
+  <div class="sure-button-box txt-center">
+      <button type="submit" class="btn btn-primary new_order">新建</button>
+      <button type="submit" class="btn btn-success order_submit">提交</button>
+  </div>
+</div>
+<script type="text/javascript">
+$('#myModal').modal({
+  keyboard: true
+})
+$('#myModal').modal('hide')
+</script>
+<script type="text/javascript">
+order_conter.init();
+</script>

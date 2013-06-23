@@ -1,0 +1,56 @@
+<!--main-container-part-->
+  <div id="content-header">
+      <h1></h1>
+  </div>
+  <div id="louis_bad" style="display:block">
+  	<div class="container-fluid">
+    <div class="quick-actions_homepage">
+    <ul class="quick-actions">
+        <li id="progress_hide" class="bg_lb doublewidth" style="left:50px;top:25px;background:#b6b3b3"> <a id="louis_update_bad" href="javascript:void()"> <i class="icon-download"></i>无可用更新</a> </li>
+        <li class="bg_lb doublewidth" style="left:-270px;top:170px;background:#da542e"> <a id="louis_display" href="javascript:void()"> <i class="icon-facetime-video"></i>演示</a> </li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div id="louis_nice" style="display:none">
+  <div class="container-fluid">
+    <div class="quick-actions_homepage">
+    <ul class="quick-actions">
+    	<div id="progress_holder" class="progress progress-striped active">
+ 			<div id="progress" class="bar" style="width: 0%;"></div>
+ 			<span id="progress_number" style="position: absolute;left: 50%;">0%</span>
+		</div>
+		<li id="updating" class="bg_lb doublewidth" style="left:50px;top:25px;background:#b6b3b3;display:none"> <a id="louis_update_bad" href="javascript:void()"> <i class="icon-download"></i>正在更新</a> </li>
+		<li id="toupdate" class="bg_lb doublewidth" style="left:50px;top:25px;"> <a id="louis_update_nice" href="javascript:void()"> <i class="icon-download"></i>更新</a> </li>
+        <li id="updated" class="bg_lb doublewidth" style="left:50px;top:25px;display:none;background:rgb(91, 226, 14)"> <a id="louis_update_nice" href="javascript:void()"> <i class="icon-ok"></i>更新完成</a> </li>        
+        <li id="todisplay" class="bg_lb doublewidth" style="left:-270px;top:170px;background:#da542e"> <a id="louis_display_good" target="_blank" href="javascript:void()"> <i class="icon-facetime-video"></i>演示</a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="hero-unit" style="float:right;padding-top:10px;margin-top:-87px;width:600px;">
+  <h1 id="louis_title" style="font-size:40px;">有新的更新可用</h1>
+  <p id="louis_content" style="margin-top:30px;">本次更新更新了不拉不拉不拉。本次更新更新了不拉不拉不拉。本次更新更新了不拉不拉不拉。本次更新更新了不拉不拉不拉。本次更新更新了不拉不拉不拉，本次更新更新了不拉不拉不拉，本次更新更新了不拉不拉不拉，本次更新更新了不拉不拉不拉</p>
+  <p>
+    <a id="louis_more" target="_blank" class="btn btn-primary btn-large" href="javascript:void()">
+      更多
+    </a>
+  </p>
+  </div>
+  <input type="hidden" id="louis_root" />
+  <input type="hidden" id="louis_zipurl" />
+  </div>
+
+<!--end-main-container-part-->
+
+<!--Footer-part-->
+
+<!--end-Footer-part-->
+<div id="louis_block" style="display:none">
+<div class="louis_display"></div>
+<div style="clear:both"></div>
+</div>
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/LouisUpdate.js"></script> 
+<script>
+var louisUpdate = new LouisUpdate();
+louisUpdate.check();
+</script>

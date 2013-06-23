@@ -1,0 +1,190 @@
+<div id="content-header">
+  <h1>商品出库单</h1>
+</div>
+<div class="container-fluid row-fluid">
+  <div class="fl input_header_info w300">
+    <label class="control-label fl mr10 mt5">出货单号</label>
+    <input class="input-xlarge disabled span8 mr10" id="order_code" type="text" disabled="true" value="{$form_id}">
+  </div>
+  <div class="fl input_header_info" style='width:200px'>
+    <label class="control-label fl mr10 mt5">收货人</label>
+    <input type="hidden" id="buyer" style="width:100px;"  tabindex="-1"  />
+  </div>
+  <div class="fl input_header_info">
+    <label class="control-label fl mr10 mt5">收货电话</label>
+    <input class="input-xlarge span5 mr10" id="phone" type="text"/>
+  </div>
+  <div class="fl input_header_info" style='width:400px'>
+    <label class="control-label fl mr10 mt5">收货地址</label>
+    <input class="input-xlarge span7 mr10" id="address" type="text"/>
+  </div>
+  <div class="fl input_header_info" style="width:500px">
+    <label class="control-label fl mr10 mt5">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>
+    <div class="controls">
+      <textarea class="input-xlarge" id="ps" rows="3"></textarea>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row-fluid main_content">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>货品清单</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <!--商品名-->
+              <label class="control-label span1 margin-none">商品名</label>
+              <div class="controls span2">
+                <select class="production_name">
+                  <option value="请选择">请选择</option>
+                  {loop="$product_name"}
+                  <option value="{$value}">{$value}</option>
+                  {/loop}
+                </select>
+              </div>
+              <!--货号-->
+              <label class="control-label span1 margin-none">货号</label>
+              <div class="controls span2">
+                <select class="in_code">
+                  
+                </select>
+              </div>
+              <!--颜色-->
+              <label class="control-label span1 margin-none">颜色</label>
+              <div class="controls span2">
+                <select class="in_num in_color">
+                  
+                </select>
+              </div>
+              <!--尺寸-->
+              <label class="control-label span1 margin-none">尺寸</label>
+              <div class="controls span2">
+                <select class="in_num in_size">
+                  
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <!--单价-->
+              <label class="control-label span1 margin-none">单价</label>
+              <div class="controls span2">
+                <input type="text" class="span4 unit_price in_price" value='0'>
+              </div>
+              <!--数量-->
+              <label class="control-label span1 margin-none">数量</label>
+              <div class="controls span2" style="min-width:158px;white-space:nowrap">
+                <a href='javascript:void(0)' class="num-control num-add">+</a>
+                <input type="text" class="input_num span4 in_price" value='0'>
+                <a href='javascript:void(0)' class="num-control num-cut">-</a>&nbsp;*
+                <span class="c_num f14"></span>
+                 <span class="cut_num f14 red"></span>
+                <span class="total_num f14"></span>
+              </div>
+              <!--总价-->
+              <label id='total_price_' class="control-label span1 margin-none">总价</label>
+              <div class="controls span2">
+                <span class="total_price f14">￥<strong class="red">32312</strong></span>
+              </div>
+            </div>
+            <div class="control-group num_notice" style="display:none"></div>
+            <div class="form-actions">
+              <a href='javascript:void(0)' class="btn btn-success order_submit">提交</a>
+              <!--<button type="submit" class="btn btn-primary copy_this">复制</button>
+              <button type="submit" class="btn btn-danger delete_this">删除</button>-->
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  <div class="total_price_box txt-right f16">
+    <p>总价：￥<strong class="all_price red"></strong></p>
+  </div>
+  <div style='margin:20px 0;border:1px solid #cdcdcd'>
+    <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+      <h5>已提交货品清单</h5>
+    </div>
+    <div class="widget-content nopadding">
+      <table id='submit_table' class="table table-bordered table-striped submit_table" style='table-layout:fixed'>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>货号</th>
+            <th>颜色</th>
+            <th>尺寸</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script type="text/javascript">
+    (function(){
+      var table=document.getElementById('submit_table');
+      var tbody=table.getElementsByTagName('tbody')[0];
+      var tr=tbody.getElementsByTagName('tr');
+      var post={};
+      if(post){
+        for(var i=post.length-1;i>=0;i--){
+          tr[i].post=post[i];
+        }
+      }
+    })(); 
+  </script>
+  <div class="total_price_box txt-right f16">
+    <p>总价：￥<strong class="all_price red"></strong></p>
+  </div>
+  <!--
+  <div class="sure-button-box txt-center">
+      <button type="submit" class="btn btn-primary new_order">新建</button>
+      <button type="submit" class="btn btn-success order_submit">提交</button>
+  </div>-->
+</div>
+</div>
+<!--modal-->
+<div class="modal fade" id="myModal">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>提示</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-info" data-dismiss="modal">确定</a>
+  </div>
+<script src="{$ROOT_PATH}/tpl/js/bootstrap-modal.js"></script>
+<script src="{$ROOT_PATH}/tpl/js/order-form.js"></script>
+<script type="text/javascript">
+$('#myModal').modal('hide');
+$('#myModal').css('display','none')
+</script>
+<script type="text/javascript">
+order_conter.init();
+</script>
+<script type="text/javascript">
+$('#buyer').select2({
+  	createSearchChoice:function(term, data) { if ($(data).filter(function() { return this.text.localeCompare(term)===0; }).length===0) {return {id:term, text:term};} },
+    multiple: false,
+    data: {$user_data}
+});
+$('#buyer').on('change',function(e){
+  var data={$user_data};
+  var phone=$('#phone');
+  var address=$('#address');
+  var num=e.val.replace(/[^\d]/g,'');
+  if(num==''){
+    phone.val('');
+    address.val('');
+  }else{
+    phone.val(data[e.val].phone)
+    address.val(data[e.val].address)
+  }
+});
+</script>

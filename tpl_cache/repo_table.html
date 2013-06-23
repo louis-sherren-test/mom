@@ -1,0 +1,74 @@
+  <div id="content-header">
+    <h1>Tables</h1>
+  </div>
+  <div class="container-fluid" style="margin-top:30px">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+          </div>
+          <div id="table_container" class="widget-content nopadding">
+          <table class="table table-bordered table-striped" id="auto_table">
+          <thead>
+          <th>商品名</th>
+          <th>货号</th>
+          <th>颜色</th>
+          <th>尺码</th>
+          <th>剩余</th>
+          <th>入库时间</th>
+          <th>总量</th>
+          <th style="text-align">操作</th>
+          </thead>
+          <tbody>
+          </tbody>
+          <tr></tr>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$('.production_name').select2();
+
+var test = $('#auto_table').dataTable( {
+	"bSort": true,
+    "bProcessing": true,
+    "bServerSide": true,
+    "bFilter": false,
+    "bJQueryUI": true,
+	"sPaginationType": "full_numbers",
+	"iDisplayLength": 10,
+    "sAjaxSource": "<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?mod=check&act=repo",
+    "aoColumns": [
+  	          	{ "mData": "name" },
+  	          	{ "mData": "code" },
+  	          	{ "mData": "color" },
+  	          	{ "mData": "size" },
+  	          	{ "mData": "left" },
+  	          	{ "mData":  "times"},
+  	          	{ "mData":  "total_count"},
+  	          	{ "mData": "id",
+  	          	  "mRender": function(data,type,full){
+  	          		  return "<div style='text-align:center;'>"+
+  	          		  "<button onclick=_del_('"+data+"') class='btn btn-danger'>删除</button></div>";
+  	          	  }},
+  	          	],
+  	"fnInitComplete": function () {
+  		var that = this;
+  		this.$('tr').click( function (e) {
+  			console.log(this);
+  		});
+  	},
+});
+$('#auto_table_wrapper .ui-widget-header').first().css("display","none");
+$('#auto_table tbody tr').click(function(e){
+	console.log(e);
+});
+function _del_(id) {
+	alert(id);
+}
+</script>

@@ -1,0 +1,57 @@
+<!--end-main-container-part-->
+</div>
+<!--Footer-part-->
+<input id="web_base" type="hidden" value="{$ROOT_PATH}" />
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a> </div>
+</div>
+<!--end-Footer-part-->
+</body>
+<script src="{$ROOT_PATH}/tpl/js/excanvas.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.ui.custom.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/bootstrap.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.flot.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.flot.resize.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.peity.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/fullcalendar.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.dashboard.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.gritter.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.interface.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.chat.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.validate.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.form_validation.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.wizard.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.uniform.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/select2.min.js"></script>
+<script src="{$ROOT_PATH}/tpl/js/matrix.popover.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/jquery.dataTables.min.js"></script> 
+<script src="{$ROOT_PATH}/tpl/js/matrix.tables.js"></script>
+<script type="text/javascript">
+(function(){
+	var content=$('#content');
+	var sidebar=$('#sidebar');
+	sidebar.bind('click',function(){
+		var ele=event.target
+		ajax_menu(ele)
+	});
+	$.get($('ul li a',sidebar).attr('data-href'),function(data){
+		content.html(data)
+		$('ul li',sidebar).removeClass('active');
+		$($('ul li',sidebar)[0]).addClass('active')
+	});
+	function ajax_menu(ele){
+		var url=ele.getAttribute('data-href');
+		//console.log(url)
+		if(url){
+			$.get(url,function(data){
+				content.html(data)
+				$('ul li',sidebar).removeClass('active');
+				$(ele).addClass('active');
+			});
+		}
+	}
+})();
+</script>
+</html>

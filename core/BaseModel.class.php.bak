@@ -1,0 +1,78 @@
+<?php
+class BaseModel
+{
+	protected $table;
+	protected $fields;
+	protected $db;
+	protected $options = array();
+	
+	public function __construct($table = "",$db = false)
+	{
+		if($db == false)
+			$this->db = new Db();
+        $this->_tableFix = C('TABLE_PRE_FIX');
+        $this->table = $table;
+	}
+	
+	public function query($sql)
+	{
+		return $this->db->query($sql);
+    }
+
+    public function tquery($sql,$params) 
+    {
+        foreach ($params as $k=>$v) {
+            $params[$k] = mysql_real_escape_string($v);
+        }
+        $reg = "/\?([is])/";
+        $sql = preg_replace_callback($reg,array($this,"preg_callback"),$sql);
+        $count = count($params);
+        for ($i = 0 ; $i < $count ; $i++) {
+            $str[] = '$params['.$i.']';
+        }
+        $vars = join(",",$str);
+        eval('$result = sprintf($sql,'.$vars.');');
+        return $this->db->query($result);
+    }
+
+    public function getSingleResult()
+    {
+       return $this->db->getSingleResult();
+    }
+
+    public function getMultiResult()
+    {
+        return $this->db->getMultyResult();
+    }
+
+    private function preg_callback($matches)
+    {
+        if ($matches[1] == "s") {
+            return "%s";
+        }
+        if ($matches[1] == "i") {
+            return "%d";
+        }
+    }
+
+    /*
+     * 将$data数组字段名根据表名转换为可直接被数据库使用的字段名，过滤脏数据，并返回表的真实名称
+     * 返回结果为一个含有两个字段的数组
+     * table 的值为字符串类型，表示表的真实名称
+     * key   的值为数组，数组的value不变，key变为真实key名称
+     */
+    public function create($data,$table)
+    {
+        $res = $this->query("SELECT `id`,`table_name` FROM `mom_table_info` WHERE `table_name`='{$table}'");
+        if (!$res) {
+            return -1;
+        }
+        $tableData = $this->getSingleResult();
+        $this->query("SELECT `key_name`,`key_real_name` FROM `mom_key_info` WHERE `tid`={$tableData["id"]}");
+        $keys = $this->getMultiResult();
+        $ret = array();
+        foreach ($data as $k => $v) {
+            
+        }
+    }
+}

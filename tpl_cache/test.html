@@ -1,0 +1,19 @@
+<html>
+    <script type="text/javascript" src="http://localhost/mom/tpl/jquery-2.0.1.js" ></script>
+    <button onclick="show()">shit</button>
+    <script type="text/javascript">
+        function show()
+        {
+            $.ajax({
+                url:"?mod=in&act=putin",
+                type:"POST",
+                data:"key=321",
+                success:function(s){
+                    alert(s);
+                },
+            });
+        }
+    </script>
+</html>
+
+

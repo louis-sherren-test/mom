@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/bootstrap.min.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/fullcalendar.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/matrix-style.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/matrix-media.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/font-awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/jquery.gritter.css" />
+<link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/select2.css" />
+<link href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/css/louis.css" rel="stylesheet" />
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/dashboard.html">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part--> 
+
+
+<!--top-Header-menu-->
+
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar">
+  <a href="javascript:void(0)" class="visible-phone"><i class="icon icon-home"></i>首页</a>
+  <ul>
+    <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=home"><i class="icon icon-home"></i><span>首页</span></a></li>
+    <li class="active"><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=out"><i class="icon icon-signal"></i><span>商品出库</span></a></li>
+    <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=in"><i class="icon icon-th"></i><span>商品入库</span></a></li>
+    <li class="submenu">
+      <a href="javascript:void(0)"><i class="icon icon-th-list"></i><span>管理</span></a>
+      <ul>
+        <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=formtable">出库单</a></li>
+        <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=outtable">总出货</a></li>
+        <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=repotable">仓库</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/calendar.html"><i class="icon icon-calendar"></i><span>统计</span></a></li>
+    <li><a href="javascript:void(0)" data-href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?act=update"><i class="icon icon-tint"></i><span>更新</span><span class="label label-important">New</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+<div id="content">
+
+<!--main-container-part-->
+<!--end-main-container-part-->
+</div>
+<!--Footer-part-->
+<input id="web_base" type="hidden" value="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>" />
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a> </div>
+</div>
+<!--end-Footer-part-->
+</body>
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/excanvas.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.ui.custom.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/bootstrap.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.flot.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.flot.resize.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.peity.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/fullcalendar.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.dashboard.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.gritter.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.interface.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.chat.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.validate.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.form_validation.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.wizard.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.uniform.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/select2.min.js"></script>
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.popover.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/jquery.dataTables.min.js"></script> 
+<script src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/js/matrix.tables.js"></script>
+<script type="text/javascript">
+(function(){
+	var content=$('#content');
+	var sidebar=$('#sidebar');
+	sidebar.bind('click',function(){
+		var ele=event.target
+		ajax_menu(ele)
+	});
+	$.get($('ul li a',sidebar).attr('data-href'),function(data){
+		content.html(data)
+		$('ul li',sidebar).removeClass('active');
+		$($('ul li',sidebar)[0]).addClass('active')
+	});
+	function ajax_menu(ele){
+		var url=ele.getAttribute('data-href');
+		//console.log(url)
+		if(url){
+			$.get(url,function(data){
+				content.html(data)
+				$('ul li',sidebar).removeClass('active');
+				$(ele).addClass('active');
+			});
+		}
+	}
+})();
+</script>
+</html>
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/bootstrap.min.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/fullcalendar.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/matrix-style.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/matrix-media.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/font-awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/jquery.gritter.css" />
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/css/select2.css" />
+<link href="{$ROOT_PATH}/tpl/css/louis.css" rel="stylesheet" />
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+  <h1><a href="{$ROOT_PATH}/tpl/dashboard.html">Matrix Admin</a></h1>
+</div>
+<!--close-Header-part--> 
+
+
+<!--top-Header-menu-->
+
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar">
+  <a href="javascript:void(0)" class="visible-phone"><i class="icon icon-home"></i>首页</a>
+  <ul>
+    <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=home"><i class="icon icon-home"></i><span>首页</span></a></li>
+    <li class="active"><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=out"><i class="icon icon-signal"></i><span>商品出库</span></a></li>
+    <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=in"><i class="icon icon-th"></i><span>商品入库</span></a></li>
+    <li class="submenu">
+      <a href="javascript:void(0)"><i class="icon icon-th-list"></i><span>管理</span></a>
+      <ul>
+        <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=formtable">出库单</a></li>
+        <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=outtable">总出货</a></li>
+        <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=repotable">仓库</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/tpl/calendar.html"><i class="icon icon-calendar"></i><span>统计</span></a></li>
+    <li><a href="javascript:void(0)" data-href="{$ROOT_PATH}/?act=update"><i class="icon icon-tint"></i><span>更新</span><span class="label label-important">New</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+<div id="content">

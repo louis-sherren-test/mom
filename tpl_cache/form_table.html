@@ -1,0 +1,43 @@
+  <div id="content-header">
+    <h1>Tables</h1>
+  </div>
+  <div class="container-fluid">
+    <hr>
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5>Data table</h5>
+          </div>
+          <div id="table_container" class="widget-content nopadding">
+          <table class="table table-bordered table-striped" id="auto_table">
+          <thead>
+          <th>订单号</th>
+          <th>买家</th>
+          <th>电话</th>
+          <th>地址</th>
+          <th>下单时间</th>
+          </thead>
+          <tbody>
+          </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+$('#auto_table').dataTable( {
+	"bSort": true,
+    "bProcessing": true,
+    "bServerSide": true,
+    "bFilter": false,
+    "bJQueryUI": true,
+	"sPaginationType": "full_numbers",
+	"iDisplayLength": 10,
+    "sAjaxSource": "<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/?mod=check&act=form",
+  } );
+$('#auto_table_wrapper .ui-widget-header').first().css("display","none");
+</script>
+

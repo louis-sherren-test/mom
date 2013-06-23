@@ -1,0 +1,124 @@
+<?php
+
+function drop_keys($array)
+{
+        $buf = array();
+
+        $i = 0;
+        $k = 0;
+        foreach ($data as $v) {
+            foreach ($v as $v1) {
+                $buf[$i][$k] = $v1;
+                $k++;
+            }
+            $k = 0;
+            $i++;
+        }
+}
+
+function L($string,$file = 'log.txt')
+{
+	$string = date('Y-m-d H:i:s') . ' : ' . $string . "\n";
+	$fh = fopen(C('SAE_FILE_PREFIX') . $file, 'a+');
+	fwrite($fh, $string);
+}
+
+function C($key,$value = false,$require = null) 
+{
+	static $config = array();
+	if($require != null)
+	{
+		$buf = require_once $require;
+		foreach($buf as $k=>$v)
+			$config[$k] = $v;
+		return;
+	}
+	if($value === false)
+	{
+		$r = explode('|',$key);
+		$ca = $config;
+		foreach($r as $v)
+		{
+			if(!isset($ca[$v]))
+			{
+				return null;
+			}
+			$ca = $ca[$v];
+		}
+		return $ca;
+	}
+	else
+	{
+		$r = explode('|',$key);
+		$ca = &$config;
+		foreach($r as $v)
+		{
+			$ca = &$ca[$v];
+		}
+		$ca = $value;
+	}
+}
+
+function G($v)
+{
+    return isset($_GET[$v]) ? $_GET[$v] : (isset($_POST[$v]) ? $_POST[$v] : "");
+}
+
+function implode_value($values)
+{
+	foreach ($values as $k => $v)
+	{
+		$values[$k] = '\'' . addslashes($v) . '\'';
+	}
+	$str = implode(',',$values);
+	return '(' . $str . ')';
+}
+
+function implode_key($keys)
+{
+	foreach ($keys as $k => $v)
+	{
+		$keys[$k] = '`' . $k . '`';
+	}
+	$str = implode(',', $keys);
+	return '(' . $str . ')';	
+}
+
+function M($className = false,$db = false)
+{
+	if($className == false)
+		return new BaseModel();
+	if(is_array($className))
+	{
+		$oa = array();
+		foreach ($className as $v)
+		{
+			$v = ucfirst(strtolower($v));
+			$class = $v . 'Model';
+			array_push($oa, new $class());
+		}
+		return new HybridModel($oa, $db);
+	}
+	$className = ucfirst(strtolower($className));
+	$class = $className . 'Model';
+	return new $class();
+}
+
+function alert_jump($alert = false,$jump = false)
+{
+	$js = '';
+	if($alert != false)
+	{
+		$js.= 'alert(\''. $alert .'\');';
+	}
+	if($jump != false)
+	{
+		$js.= 'window.location.href=\''. $jump .'\';';
+	}
+	echo '<script language = javascript>' . $js . '</script>';
+	if($jump !=false)
+	{
+		exit;
+	}
+}
+
