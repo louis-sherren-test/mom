@@ -73,7 +73,7 @@ class IndexAction extends BaseAction
         $this->tpl->assign("product_name",$data);
         $this->tpl->draw("form-in");
     }
-
+    //test information
 }
 
 

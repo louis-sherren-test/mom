@@ -5,7 +5,7 @@ return array(
 'DB' => array(
 	'host' => 'localhost',
 	'user' => 'root',
-	'password' => '123123',
+	'password' => '',
 	'dbname' => 'mom',
 ),
 
