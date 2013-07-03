@@ -50,11 +50,13 @@ class IndexAction extends BaseAction
         $f = M("form");
         $users = $f->select(array("distinct(`buyer`)","phone","address"),true);
         $id = 0;
-        foreach ( $users as $k => $v ) {
-            $users[$k]["id"] = $id;
-            $users[$k]["text"] = $users[$k]["buyer"];
-            unset($users[$k]["buyer"]);
-            $id++;
+        if ($users) {
+            foreach ( $users as $k => $v ) {
+                $users[$k]["id"] = $id;
+                $users[$k]["text"] = $users[$k]["buyer"];
+                unset($users[$k]["buyer"]);
+                $id++;
+            } 
         }
         $data = $r->select(array("distinct(`name`)"),true,"name");
         $this->tpl->assign("user_data",json_encode($users));
@@ -66,6 +68,9 @@ class IndexAction extends BaseAction
     /*入库页面*/
     public function in()
     {
+        $r = M("repo");
+        $data = $r->select(array("distinct(`name`)"),true,"name");
+        $this->tpl->assign("product_name",$data);
         $this->tpl->draw("form-in");
     }
 

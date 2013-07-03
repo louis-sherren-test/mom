@@ -49,8 +49,8 @@ class CheckAction extends BaseAction
                     ($whereSize ? "r.".$whereSize : "");
         }
 
-        $sql = //"SELECT GROUP_CONCAT(r.`id`) as id,
-            "SELECT r.`id`,r.`name`,
+        $sql = "SELECT GROUP_CONCAT(r.`id`) as id,
+            r.`name`,
             r.`code`,
             r.`color`,
             r.`size`,
@@ -78,8 +78,10 @@ class CheckAction extends BaseAction
         $mod->query($sql);
       
         $data = $mod->getMultiResult();
-        foreach ($data as $k => $v) {
-            $data[$k]["options"] = "";
+        if (!empty($data)) {
+            foreach ($data as $k => $v) {
+                $data[$k]["options"] = "";
+            }
         }
         
         $sql = "SELECT COUNT(*) as `count` FROM 
