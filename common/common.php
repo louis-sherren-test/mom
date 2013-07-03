@@ -1,6 +1,9 @@
 <?php
 function drop_keys($data)
 {
+    if (empty($data)) {
+        return $data;
+    }
     $buf = array();
 
     $i = 0;

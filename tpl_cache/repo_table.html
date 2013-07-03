@@ -56,19 +56,17 @@ var test = $('#auto_table').dataTable( {
   	          		  return "<div style='text-align:center;'>"+
   	          		  "<button onclick=_del_('"+data+"') class='btn btn-danger'>删除</button></div>";
   	          	  }},
-  	          	],
-  	"fnInitComplete": function () {
+                ],
+    /*初始化点击事件*/
+  	/*"fnInitComplete": function () {
   		var that = this;
   		this.$('tr').click( function (e) {
   			console.log(this);
   		});
-  	},
+  	},*/
 });
 $('#auto_table_wrapper .ui-widget-header').first().css("display","none");
-$('#auto_table tbody tr').click(function(e){
-	console.log(e);
-});
 function _del_(id) {
-	alert(id);
+    /*do ajax delete*/	
 }
 </script>
