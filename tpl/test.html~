@@ -1,0 +1,15 @@
+<select multiple="" name="e9" id="e9" style="width:300px" class="populate"></select>
+<script type="text/javascript">
+   $("#e9").select2({
+	minimumInputLength: 1,
+            query: function (query) {
+                var data = {results: []}, i, j, s;
+                for (i = 1; i < 5; i++) {
+                    s = "";
+                    for (j = 0; j < i; j++) {s = s + query.term;}
+                    data.results.push({id: query.term + i, text: s});
+                }
+                query.callback(data);
+            }
+	});
+</script>

@@ -9,7 +9,12 @@ class IndexAction extends BaseAction
 	public function _lasCall()
 	{
 		
-	}
+    }
+
+    public function test()
+    {
+        $this->tpl->draw("test");
+    }
 	
 	public function index()
     {
@@ -39,6 +44,9 @@ class IndexAction extends BaseAction
 
     public function repotable()
     {
+        $r = M("repo");
+        $data = $r->select(array("distinct(`name`)"),true,"name");
+        $this->tpl->assign("product_name",$data);
         $this->tpl->draw("repo_table");
     }
     
@@ -70,7 +78,7 @@ class IndexAction extends BaseAction
     {
         $r = M("repo");
         $data = $r->select(array("distinct(`name`)"),true,"name");
-        $this->tpl->assign("product_name",$data);
+        $this->tpl->assign("product_name",json_encode($data));
         $this->tpl->draw("form-in");
     }
     //test information

@@ -216,13 +216,15 @@ class SellAction extends BaseAction
         $in = $f->create($d);
         $exists = $f->where("`code`='{$in["code"]}'")->select(array("id"));
         if ($exists) {
-            $f->update($in);
+            $data = $f->where("`code`='{$in["code"]}'")->update($in);
+            $formid = $f->where("`code`='{$in["code"]}'")->select(array("id"));
+            $formid = $formid["id"];
             $type = "create";
         } else {
             $f->insert($in);
+            $formid = $f->lastInsertId();
             $type = "modify";
         }
-        $formid = $f->lastInsertId();
         $id = array();
         foreach ($d["data"] as $k=>$v) {
             $repo_ids = explode(",",$v["repo_id"]);

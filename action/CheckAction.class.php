@@ -18,6 +18,7 @@ class CheckAction extends BaseAction
 
     public function repo()
     {
+        $sort = G("iSortCol_0") ? G("iSortCol_0") : "id";
         $pageItems = G("iDisplayLength");
         $start = G("iDisplayStart");
         $name = G("name");
@@ -48,14 +49,14 @@ class CheckAction extends BaseAction
                     ($whereColor ? "r.".$whereColor : "").
                     ($whereSize ? "r.".$whereSize : "");
         }
-
+        $sortMap = array('r.`name`','r.`code`','r.`color`','r.`size`','`left`','`times`','total_count');
         $sql = "SELECT GROUP_CONCAT(r.`id`) as id,
             r.`name`,
             r.`code`,
             r.`color`,
             r.`size`,
             SUM(r.`count`) as `total_count`,
-            GROUP_CONCAT(r.`ctime`) as `times`,
+            FROM_UNIXTIME(MAX(r.`ctime`)) as `times`,
             IFNULL(
                 SUM(r.`count`)-
                 (SELECT SUM(o.`count`) 
@@ -73,6 +74,7 @@ class CheckAction extends BaseAction
             r.`code`,
             r.`color`,
             r.`size`
+            ORDER BY {$sortMap[$sort]} DESC 
             LIMIT {$start},{$pageItems}";
         $mod = M();
         $mod->query($sql);
