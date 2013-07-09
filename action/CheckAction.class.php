@@ -21,35 +21,57 @@ class CheckAction extends BaseAction
         $sort = G("iSortCol_0") ? G("iSortCol_0") : "id";
         $pageItems = G("iDisplayLength");
         $start = G("iDisplayStart");
-        $name = G("name");
-        $code = G("code");
-        $color = G("color");
-        $size = G("size");
-        $from = G("time_form");
-        $to = G("time_to");
+        $name = $this->filter(G("name"));
+        $code = $this->filter(G("code"));
+        $color = $this->filter(G("color"));
+        $size = $this->filter(G("size"));
+        
+        $from = $this->filter(G("time_form"));
+        $to = $this->filter(G("time_to"));
+
         if ($name || $code || $color || $size || $from || $to) {
             $where = true;
         } else {
             $where = false;
         }
-        $whereTimeStart = $from ? "ctime>'{$from}'" : "";
-        $whereTimeEnd = $to ? "ctime<'{$to}'" : "";
-        $whereName = $name ? "name='{$name}'" : "";
-        $whereCode = $code ? "name='{$code}'" : "";
-        $whereColor = $color ? "name='{$color}'" : "";
-        $whereSize = $size ? "name='{$size}'" : "";
+        if ($from = strtotime($from)) {
+        	$whereTimeStart = $from ? "ctime>'{$from}' " : "";
+        }
+        if ($to = strtotime($to)) {
+        	$whereTimeEnd = $to ? "ctime<'{$to}' " : "";
+        }
+        $whereName = $name ? "name='{$name}' " : "";
+        $whereCode = $code ? "code='{$code}' " : "";
+        $whereColor = $color ? "color='{$color}' " : "";
+        $whereSize = $size ? "size='{$size}' " : "";
 
         $whereSql = "";
+        $time = array("r.`id`=o.`repo_id`");
         if ($where) {
-            $whereSql.=($where ? " WHERE " : "").
-                    ($whereTimeStart ? "r.".$whereTimeStart : "") .
-                    ($whereTimeEnd ? "r.".$whereTimeEnd:"") .
-                    ($whereName ? "r.".$whereName : "") .
-                    ($whereCode ? "r.".$whereCode : "") .
-                    ($whereColor ? "r.".$whereColor : "").
-                    ($whereSize ? "r.".$whereSize : "");
+        	$where = array();
+        	if ($whereTimeStart) {
+        		$where[] = "r.".$whereTimeStart;
+        		$time[] = "r.".$whereTimeStart;
+        	}
+        	if ($whereTimeEnd) {
+        		$where[] = "r.".$whereTimeEnd;
+        		$time[] = "r.".$whereTimeEnd;
+        	}
+        	if ($whereName) {
+        		$where[] = "r.".$whereName;
+        	}
+        	if ($whereCode) {
+        		$where[] = "r.".$whereCode;
+        	}
+        	if ($whereColor) {
+        		$where[] = "r.".$whereColor;
+        	}
+        	if ($whereSize) {
+        		$where[] = "r.".$whereSize;
+        	}
+            $whereSql.=($where ? " WHERE " : "") . implode(" and ",$where);
         }
-        $sortMap = array('r.`name`','r.`code`','r.`color`','r.`size`','`left`','`times`','total_count');
+        $sortMap = array('r.`name`','r.`code`','r.`color`','r.`size`','`left`','`times`','total_count',"id"=>"id");
         $sql = "SELECT GROUP_CONCAT(r.`id`) as id,
             r.`name`,
             r.`code`,
@@ -61,9 +83,8 @@ class CheckAction extends BaseAction
                 SUM(r.`count`)-
                 (SELECT SUM(o.`count`) 
                 FROM `mom_out_products` o 
-                WHERE r.`id`=o.`repo_id` ".
-                ($whereTimeStart ? "o.".$whereTimeStart : "").
-                ($whereTimeEnd ? "o.".$whereTimeEnd:"").
+                WHERE ".
+                implode(" and ",$time).
                 "),
                 SUM(r.`count`)
             ) as `left`
@@ -78,7 +99,6 @@ class CheckAction extends BaseAction
             LIMIT {$start},{$pageItems}";
         $mod = M();
         $mod->query($sql);
-      
         $data = $mod->getMultiResult();
         if (!empty($data)) {
             foreach ($data as $k => $v) {
@@ -88,7 +108,7 @@ class CheckAction extends BaseAction
         
         $sql = "SELECT COUNT(*) as `count` FROM 
                     (SELECT count(*) 
-                    FROM `mom_current_repo` {$whereSql}
+                    FROM `mom_current_repo` r {$whereSql}
                     GROUP BY `name`,`code`,`color`,`size` ) as r";
         $mod->query($sql);
         $count = $mod->getSingleResult();
@@ -132,6 +152,15 @@ class CheckAction extends BaseAction
             "aaData" => drop_keys($data),
         );
         echo json_encode($output);
+    }
+    
+    private function filter($var)
+    {
+    	if ($var == "null" || $var == "" || $var == "请选择" || $var == "全部" || $var == "all") {
+    		return false;
+    	} else {
+    		return $var;
+    	}
     }
 }
 ?>

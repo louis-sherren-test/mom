@@ -21,6 +21,7 @@ class Db{
 		}
 		$this->conn = mysql_connect($this->config['host'],$this->config['user'],$this->config['password']) or die('mysql connect failed : ' . mysql_error());
 		mysql_select_db($this->config['dbname']) or die('mysql select db failed : ' . mysql_error());
+		mysql_query("SET NAMES utf8;");
 	}
 	
 	public function query($sql)

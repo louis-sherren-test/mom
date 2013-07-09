@@ -24,19 +24,24 @@
               <label class="control-label span1 margin-none">颜色</label>
               <div class="controls span2">
                 <select class="in_num in_color">
-                  
                 </select>
               </div>
               <!--尺寸-->
               <label class="control-label span1 margin-none">尺寸</label>
               <div class="controls span2">
                 <select class="in_num in_size">
-                  
                 </select>
-              </div>
+              </div>  
             </div>
             </div>
             </div>
+            <div style="margin:20px;">
+            	<span style="font-size:15px;margin-right:20px;">从</span>
+            	<input type="text" class="span2" id="dpd1"/>
+            	<span style="font-size:15px;margin:0px 20px;">到</span>
+            	<input type="text" class="span2" id="dpd2"/>
+            </div>
+            <button onclick="search_()" class="btn btn-primary btn-large" style="margin-left: 530px;margin-top: -107px;">搜索</button>
   <div class="container-fluid" style="margin-top:30px">
     <hr>
     <div class="row-fluid">
@@ -68,6 +73,8 @@
   </div>
 
 <script type="text/javascript">
+
+
 $('.production_name').select2();
 
 var test = $('#auto_table').dataTable( {
@@ -96,9 +103,11 @@ var test = $('#auto_table').dataTable( {
     "aaSorting": [ [5,'asc'], [6,'asc'] ],
   	"fnServerParams": function ( aoData ) {
         aoData.push( { "name": "name", "value": $(".production_name").select2("val") } );
-       // aoData.push( { "name": "code", "value": $(".in_code").select2("val"); } )
-        //aoData.push( { "name": "color", "value": $(".in_num in_color").select2("val") } );
-        //aoData.push( { "name": "size", "value": $(".in_num in_size").select2("val") } );
+        aoData.push( { "name": "code", "value": $("select.in_code").val() } );
+        aoData.push( { "name": "color", "value": $("select.in_color").val() } );
+        aoData.push( { "name": "size", "value": $("select.in_size").val() } );
+        aoData.push( { "name": "time_form", "value": $("#dpd1").val() } );
+        aoData.push( { "name": "time_to", "value": $("#dpd2").val() } );
     },
 });
 $('#auto_table_wrapper .ui-widget-header').first().css("display","none");
@@ -113,14 +122,43 @@ function _del_(id,that) {
 }
 
 </script>
-
 <script src="{$ROOT_PATH}/tpl/js/bootstrap-modal.js"></script>
 <script src="{$ROOT_PATH}/tpl/js/order-form.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">	
 $('#myModal').modal('hide');
 $('#myModal').css('display','none');
+
 </script>
 <script type="text/javascript">
 order_conter.init();
-$(".production_name").select2("val") = "全部";
+//$(".production_name").select2("val") = "全部";
 </script>
+<script language="javascript" type="text/javascript" src="{$ROOT_PATH}/tpl/thirdparty/datepicker/bootstrap-datepicker.js"></script>
+<link rel="stylesheet" href="{$ROOT_PATH}/tpl/thirdparty/datepicker/datepicker.css" />
+<script type="text/javascript">
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ 
+var checkin = $('#dpd1').datepicker({
+  "format": "yyyy-mm-dd",
+}).on('changeDate', function(ev) {
+  if (ev.date.valueOf() > checkout.date.valueOf()) {
+    var newDate = new Date(ev.date)
+    newDate.setDate(newDate.getDate() + 1);
+    checkout.setValue(newDate);
+  }
+  checkin.hide();
+  $('#dpd2')[0].focus();
+}).data('datepicker');
+var checkout = $('#dpd2').datepicker({
+  "format": "yyyy-mm-dd",
+}).on('changeDate', function(ev) {
+  checkout.hide();
+}).data('datepicker');
+
+function search_(){
+	test.fnDraw();
+}
+
+</script>
+    
