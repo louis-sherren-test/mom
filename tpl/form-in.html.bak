@@ -38,11 +38,6 @@
               <div class="controls span2">
                 <input type="text" class="span4 unit_price in_price" value='0'>
               </div>
-              <!-- 批发价 -->
-              <label class="control-label span1 margin-none">批发价</label>
-              <div class="controls span2">
-                <input type="text" class="span4 whole_price" value='0'>
-              </div>
               <!--数量-->
               <label class="control-label span1 margin-none">数量</label>
               <div class="controls span2" style="min-width:158px;white-space:nowrap">
@@ -70,8 +65,11 @@
       <button type="submit" class="btn btn-success order_submit">提交</button>
   </div>
 </div>
+<script src="{$ROOT_PATH}/tpl/js/bootstrap-modal.js"></script>
+<script src="{$ROOT_PATH}/tpl/js/order-form.js"></script>
 <script src="{$ROOT_PATH}/tpl/js/in-form.js"></script>
 <script type="text/javascript">
+
 $('#myModal').modal({
   keyboard: true
 })

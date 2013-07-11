@@ -36,12 +36,13 @@
             </div>
             </div>
             <div style="margin:20px;">
+            	<span style="font-size:15px;margin-right:20px;">日期：</span> 
             	<span style="font-size:15px;margin-right:20px;">从</span>
             	<input type="text" class="span2" id="dpd1"/>
             	<span style="font-size:15px;margin:0px 20px;">到</span>
             	<input type="text" class="span2" id="dpd2"/>
             </div>
-            <button onclick="search_()" class="btn btn-primary btn-large" style="margin-left: 530px;margin-top: -107px;">搜索</button>
+            <button onclick="search_()" class="btn btn-primary btn-large" style="margin-left: 570px;margin-top: -107px;">搜索</button>
   <div class="container-fluid" style="margin-top:30px">
     <hr>
     <div class="row-fluid">
@@ -60,7 +61,6 @@
           <th>剩余</th>
           <th>最后入库时间</th>
           <th>总量</th>
-          <th style="text-align">操作</th>
           </thead>
           <tbody>
           </tbody>
@@ -71,7 +71,12 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid table_show" >
+  </div>
+<div style="display:none;">
+<button onclick=_del_(this) class='btn btn-danger'>删除</button></div>
 
+</div>
 <script type="text/javascript">
 
 
@@ -94,11 +99,10 @@ var test = $('#auto_table').dataTable( {
   	          	{ "mData": "left" },
   	          	{ "mData":  "times"},
   	          	{ "mData":  "total_count"},
-  	          	{ "mData": "id",
+  	          	/*{ "mData": "id",
   	          	  "mRender": function(data,type,full){
-  	          		  return "<div style='text-align:center;'>"+
-  	          		  "<button onclick=_del_('"+data+"',this) class='btn btn-danger'>删除</button></div>";
-  	          	  }},
+  	          		  return "<input type='hidden' value='"+data+"' id='data_save'>";
+  	          	  }},*/
                 ],
     "aaSorting": [ [5,'asc'], [6,'asc'] ],
   	"fnServerParams": function ( aoData ) {
@@ -110,15 +114,31 @@ var test = $('#auto_table').dataTable( {
         aoData.push( { "name": "time_to", "value": $("#dpd2").val() } );
     },
 });
+
+var anOpen = [];
+
 $('#auto_table_wrapper .ui-widget-header').first().css("display","none");
+$('#auto_table tr').live("click",function(e){
+	i = $.inArray(this, anOpen);
+	if ( i == -1 ) {
+		var id = $(this..find("#data_save").val();
+		var openRow = test.fnOpen( this, "<button onclick=_del_("+id+",this) class='btn btn-danger'>删除</button>", "details" );
+		$("div.louis_table_details" ,openRow).slideDown("slow");
+		anOpen.push(this);
+	} else {
+		test.fnClose(this);
+		anOpen.splice( i, 1 );
+	}
+});
 
 function _del_(id,that) {
+	alert(1);
     //todo: do alert!!!
-    $(that).parent().parent().parent().hide();
-    $.ajax({
+    console.log($(that).parent().parent().parent().hide());
+    /*$.ajax({
         "url": "?mod=del&act=repo",
         "data": {"id": id},
-    });
+    });*/
 }
 
 </script>
@@ -127,7 +147,6 @@ function _del_(id,that) {
 <script type="text/javascript">	
 $('#myModal').modal('hide');
 $('#myModal').css('display','none');
-
 </script>
 <script type="text/javascript">
 order_conter.init();

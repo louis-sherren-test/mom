@@ -23,12 +23,15 @@ class RepoAction extends BaseAction
 
 	public function insert()
     {
-        $r = M("repo");
-        if ($r->insert($r->create())) {
-            echo 1;
-        } else {
-            echo 0;
-        }
+    	$r = M("repo");
+    	foreach ($_POST["post"] as $k => $v) {
+    		$res = $r->insert($r->create($v));
+    		if (!$res) {
+    			echo 0;
+    			break;
+    		}
+    	}
+        
 	}
 }
 

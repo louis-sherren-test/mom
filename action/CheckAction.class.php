@@ -49,11 +49,11 @@ class CheckAction extends BaseAction
         $time = array("r.`id`=o.`repo_id`");
         if ($where) {
         	$where = array();
-        	if ($whereTimeStart) {
+        	if (isset($whereTimeStart)) {
         		$where[] = "r.".$whereTimeStart;
         		$time[] = "r.".$whereTimeStart;
         	}
-        	if ($whereTimeEnd) {
+        	if (isset($whereTimeEnd)) {
         		$where[] = "r.".$whereTimeEnd;
         		$time[] = "r.".$whereTimeEnd;
         	}

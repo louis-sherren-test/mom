@@ -84,13 +84,15 @@ var order_conter={
 		var size=$('.in_size',o).val();
 		var price=$(".unit_price",o).val();
 		var num=$(".input_num",o).val();
+		var wholeprice=$(".whole_price",o).val();
 		return {
 			name:name,
 			code:code,
 			color:color,
 			size:size,
 			price:price,
-			num:num
+			num:num,
+			whole:wholeprice,
 		}
 	},
 	copy_bind:function(context,targetname,parentname){
@@ -115,6 +117,7 @@ var order_conter={
 				$('.in_size',clon).val(pn.size);
 				$('.unit_price',clon).val(pn.price);
 				$('.input_num',clon).val(pn.num);
+				$('.whole_price',clon).val(pn.whole);
 				/*绑定监听*/
 
 				clon.appendTo("."+context);
@@ -207,19 +210,20 @@ var order_conter={
 			temp.code=$('.in_code',this).val();
 			temp.color=$('.in_color',this).val();
 			temp.size=$('.in_size',this).val();
-			temp.price=$('.unit_price',this).val();
-			temp.num=$('.in_num',this).val();
+			temp.base_price=$('.unit_price',this).val();
+			temp.count=$('.in_num',this).val();
+			temp.wholesale_price=$('.whole_price',this).val();
 			post.push(temp);
 		});
 		if(chec){return false}
-		console.log(post)
-		/*$.post("http://192.168.1.112/mom/",{ post: post },function(data){
-			if(data=='success'){
+		//console.log(post)
+		$.post("?mod=repo&act=insert",{ post: post },function(data){
+			if(data=='1'){
 				window.location.href=''
 			}else if(data=='false'){
 				$('#submit_false').alert()
 			}
-		});*/
+		});
 	},
 	isNull:function(o){
 		for(var i in o){

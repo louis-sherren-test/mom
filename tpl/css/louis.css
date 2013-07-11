@@ -10,3 +10,7 @@
 	opacity: 0.8;
 	z-index: 100;
 }
+
+.louis_table_details{
+	display: none;
+}
