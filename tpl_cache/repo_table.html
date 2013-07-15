@@ -1,3 +1,4 @@
+
   <div id="content-header">
     <h1>仓库</h1>
   </div>
@@ -78,9 +79,8 @@
 
 </div>
 <script type="text/javascript">
-
-
 $('.production_name').select2();
+
 
 var test = $('#auto_table').dataTable( {
 	//"bSort": true,
@@ -118,10 +118,12 @@ var test = $('#auto_table').dataTable( {
 var anOpen = [];
 
 $('#auto_table_wrapper .ui-widget-header').first().css("display","none");
+
+
 $('#auto_table tr').live("click",function(e){
 	i = $.inArray(this, anOpen);
 	if ( i == -1 ) {
-		var id = $(this..find("#data_save").val();
+		var id = $(this).find("#data_save").val();
 		var openRow = test.fnOpen( this, "<button onclick=_del_("+id+",this) class='btn btn-danger'>删除</button>", "details" );
 		$("div.louis_table_details" ,openRow).slideDown("slow");
 		anOpen.push(this);
@@ -150,7 +152,6 @@ $('#myModal').css('display','none');
 </script>
 <script type="text/javascript">
 order_conter.init();
-//$(".production_name").select2("val") = "全部";
 </script>
 <script language="javascript" type="text/javascript" src="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/thirdparty/datepicker/bootstrap-datepicker.js"></script>
 <link rel="stylesheet" href="<?php echo isset($ROOT_PATH) ? $ROOT_PATH : ""; ?>/tpl/thirdparty/datepicker/datepicker.css" />
