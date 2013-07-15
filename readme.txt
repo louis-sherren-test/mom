@@ -1,4 +1,4 @@
-一个简单的PHPhahah框架.
+一个简单的PHPhahahfjsakdl框架.
 
 文件目录:
 common: 全局常量定义和全局方法实现.
