@@ -9,6 +9,10 @@ heihei~~~
 common: 全局常量定义和全局方法实现.
 :x
 
+i'm real louis_sherren;
+
+damn it;
+
 lib:
 	action: 用户自定义行为类.
 	model:用户自定义模型类.
