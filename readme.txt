@@ -1,5 +1,5 @@
 一个简单的PHPhahahfjsakdl框架.11
-fdas
+fdas wo zai lai jia
 文件目录:
 common: 全局常量定义和全局方法实现.
 :x
